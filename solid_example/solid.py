@@ -62,5 +62,5 @@ order1.add_item("USB cable", 2, 5)
 
 print(f"Total order price: {order1.total_price()}")
 
-processor = DebitPaymentProcessor("0345678")
+processor = PaypalPaymentProcessor("adolfo@intel.com")
 processor.pay(order1)
