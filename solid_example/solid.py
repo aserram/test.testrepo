@@ -24,12 +24,14 @@ class PaymentProcessor(ABC):
     def pay(self, order):
         pass
 
+
+class PaymentProcessorSMS(PaymentProcessor):
     @abstractmethod
-    def auth_sms(self,  code):
+    def auth_sms(self, code):
         pass
 
 
-class DebitPaymentProcessor(PaymentProcessor):
+class DebitPaymentProcessor(PaymentProcessorSMS):
     def __init__(self, security_code):
         self.security_code = security_code
         self.verified = False
@@ -41,7 +43,7 @@ class DebitPaymentProcessor(PaymentProcessor):
         print(f"Verifying security code: {self.security_code}")
         order.status = "paid"
 
-    def auth_sms(self,  code):
+    def auth_sms(self, code):
         print(f"Verifying SMS code {code}")
         self.verified = True
 
@@ -55,11 +57,8 @@ class CreditPaymentProcessor(PaymentProcessor):
         print(f"Verifying security code: {self.security_code}")
         order.status = "paid"
 
-    def auth_sms(self,  code):
-        raise Exception("Credit card payments don't support SMS code authorization")
 
-
-class PaypalPaymentProcessor(PaymentProcessor):
+class PaypalPaymentProcessor(PaymentProcessorSMS):
     def __init__(self, email_address):
         self.email_address = email_address
         self.verified = False
@@ -71,7 +70,7 @@ class PaypalPaymentProcessor(PaymentProcessor):
         print(f"Verifying email address: {self.email_address}")
         order.status = "paid"
 
-    def auth_sms(self,  code):
+    def auth_sms(self, code):
         print(f"Verifying SMS code {code}")
         self.verified = True
 
