@@ -19,11 +19,28 @@ class Order:
         return total
 
 
-class SMSAuth:
+class Authorizer(ABC):
+    @abstractmethod
+    def is_authorized(self) -> bool:
+        pass
+
+
+class SMSAuth(Authorizer):
     authorized = False
 
     def verify_code(self, code):
-        print(f"Verifying code {code}")
+        print(f"authorizing sms code {code}")
+        self.authorized = True
+
+    def is_authorized(self) -> bool:
+        return self.authorized
+
+
+class EmailAuth(Authorizer):
+    authorized = False
+
+    def verify_code(self, email_code):
+        print(f"authorizing email code {email_code}")
         self.authorized = True
 
     def is_authorized(self) -> bool:
@@ -37,7 +54,7 @@ class PaymentProcessor(ABC):
 
 
 class DebitPaymentProcessor(PaymentProcessor):
-    def __init__(self, security_code, authorizer: SMSAuth):
+    def __init__(self, security_code, authorizer: Authorizer):
         self.authorizer = authorizer
         self.security_code = security_code
 
@@ -60,7 +77,7 @@ class CreditPaymentProcessor(PaymentProcessor):
 
 
 class PaypalPaymentProcessor(PaymentProcessor):
-    def __init__(self, email_address, authorizer: SMSAuth):
+    def __init__(self, email_address, authorizer: Authorizer):
         self.authorizer = authorizer
         self.email_address = email_address
         self.verified = False
@@ -80,8 +97,9 @@ order1.add_item("USB cable", 2, 5)
 
 print(f"Total order price: {order1.total_price()}")
 
-sms_authorizer = SMSAuth()
-processor = PaypalPaymentProcessor("adolfo@intel.com", sms_authorizer)
-# processor = CreditPaymentProcessor("0123456")
-sms_authorizer.verify_code("0466")
+payment_authorizer = EmailAuth()
+
+processor = PaypalPaymentProcessor("adolfo@intel.com", payment_authorizer)
+payment_authorizer.verify_code("0466")
+
 processor.pay(order1)
