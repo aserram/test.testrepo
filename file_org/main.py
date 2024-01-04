@@ -35,14 +35,15 @@ def set_output_path(root_folder, file):
     return f"{root_folder}\\{year}\\{month}"
 
 
-def copy_to_path(input_files):
-    progress_bar(0, len(input_files))
-    for index, file in enumerate(input_files):
-        out_path = set_output_path('E:\\Photos', file)
+def copy_to_path(input_file_paths):
+    progress_bar(0, len(input_file_paths))
+    for index, file_path in enumerate(input_file_paths):
+        out_path = set_output_path('E:\\Photos', file_path)
         try:
-            os.makedirs(out_path, exist_ok=True)
-            shutil.copy2(file, out_path)
-            progress_bar(index+1, len(input_files))
+            if not os.path.exists(os.path.join(out_path, file_path.split('\\')[-1])):
+                os.makedirs(out_path, exist_ok=True)
+                shutil.copy2(file_path, out_path)
+            progress_bar(index+1, len(input_file_paths))
         except Exception as e:
             print(f"Warning!! file copy failed: {e}")
     print("\nFiles copied successfully!")
