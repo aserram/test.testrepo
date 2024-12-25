@@ -12,7 +12,7 @@ def progress_bar(progress, total):
 
 
 def get_root_folder():
-    root_dir = input('What folder do you want to organize?\n')
+    root_dir = input('What input folder do you want to organize the camera files?\n')
     return root_dir
 
 
@@ -26,6 +26,9 @@ def get_file_paths(root_dir):
             file_paths_filtered.append(full_path)
     return file_paths_filtered
 
+def set_output_folder():
+    output_dir = input('Where do you want to organize the camera files?\n')
+    return rf'{output_dir}'
 
 def set_output_path(root_folder, file):
     modified_time = os.path.getmtime(file)
@@ -36,9 +39,10 @@ def set_output_path(root_folder, file):
 
 
 def copy_to_path(input_file_paths):
+    output_folder = set_output_folder()
     progress_bar(0, len(input_file_paths))
     for index, file_path in enumerate(input_file_paths):
-        out_path = set_output_path('E:\\Photos', file_path)
+        out_path = set_output_path(output_folder, file_path)
         try:
             if not os.path.exists(os.path.join(out_path, file_path.split('\\')[-1])):
                 os.makedirs(out_path, exist_ok=True)
