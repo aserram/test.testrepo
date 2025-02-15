@@ -36,9 +36,14 @@ class Solution:
 
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
         size = self.NodeSize(head)
-        for x in size:
-            node = head.next
-        return node
+        if size % 2 == 0:
+            middle = int((size/2) + 1)
+        else:
+            middle = int((size+1)/2)
+        
+        for x in range(middle-1):
+            head = head.next
+        return head 
 
 def main():
     target = Solution()
@@ -48,17 +53,16 @@ def main():
     node2 = ListNode(3)
     node3 = ListNode(4)
     node4 = ListNode(5)
-    node5 = ListNode(6)
+    #node5 = ListNode(6)
 
     slist.head.next = node1
     node1.next = node2
     node2.next = node3
     node3.next = node4
-    node4.next = node5
 
-    #print(slist)
-    slist_size = target.NodeSize(slist.head)
-    print(slist_size)
+    middle_node = target.middleNode(slist.head)
+    middle_slist = LinkedList(middle_node)
+    print(middle_slist)
 
 
 if __name__ == "__main__":
