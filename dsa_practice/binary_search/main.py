@@ -1,8 +1,8 @@
 from typing import List
+import timeit
 
-
-class BinarySearch:
-    def find_element(self, array: List[int], target: int) -> float:
+class search_algo:
+    def binary_search(self, array: List[int], target: int) -> int:
         start = 0
         end = len(array) - 1
 
@@ -15,16 +15,20 @@ class BinarySearch:
             elif array[middle] < target:
                 start = middle + 1
         return None
-
+    
 def main():
-    array = [0, 4, 6, 7, 8, 11, 14, 17, 21, 27, 33, 54, 56] 
-    target = BinarySearch()
-    result = target.find_element(array, 21)
+    array = list(range(1000000)) 
+    target = search_algo()
+    
+    result = target.binary_search(array, 499999)
+    print("*****BINARY SEARCH*****")
     if result is not None:
         print(f"The target is in index: {result}")
     else:
         print("The target in not in the array")
 
-
 if __name__ == "__main__":
-    main()
+    #main()
+    n=3
+    result = timeit.timeit(stmt='main()', globals=globals(), number=n)
+    print(f"Execution time is {1000*(result/n)}ms")
