@@ -14,14 +14,14 @@ class Solution:
         max_lenght = 0
         palidrome = None
 
-        while startp < (len(s) - 1):
+        while startp <= (len(s) - 1):
             if s[startp] == s[endp]:
                 str_to_check = s[startp : endp + 1]
                 if len(str_to_check) > max_lenght and self.check_palindrome(str_to_check):
                     palidrome = str_to_check
                     max_lenght = len(palidrome)
 
-            if startp == (endp - 1):
+            if startp >= (endp - 1):
                 startp += 1
                 endp = len(s) - 1
             else:
