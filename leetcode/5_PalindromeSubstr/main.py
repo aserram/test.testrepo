@@ -11,21 +11,20 @@ class Solution:
 
     def longestPalindrome(self, s: str) -> str:
         startp, endp = 0, len(s) - 1
-        s_len = endp
+        str_len = endp
         palind_len = 0
         palidrome = None
 
-        while startp <= (s_len):
+        while startp <= (str_len):
             if s[startp] == s[endp]:
                 str_to_check = s[startp : endp + 1]
-                if len(str_to_check) > palind_len:
-                    if self.check_palindrome(str_to_check):
-                        palidrome = str_to_check
-                        palind_len = len(palidrome)
+                if len(str_to_check) > palind_len and self.check_palindrome(str_to_check):
+                    palidrome = str_to_check
+                    palind_len = len(palidrome)
 
             if startp >= (endp - 1):
                 startp += 1
-                endp = s_len
+                endp = str_len
             else:
                 endp -= 1
         return palidrome
