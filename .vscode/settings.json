@@ -1,6 +1,7 @@
 {
     "editor.minimap.scale": 2,
     "editor.minimap.autohide": true,
+    "editor.lineNumbers": "relative",
 
     "python.defaultInterpreterPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
     //"python.analysis.diagnosticMode":"workspace",
@@ -22,13 +23,16 @@
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false,
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnType": true,
+        "files.autoSave": "onFocusChange",
+        "editor.formatOnSave": true,
         "editor.wordBasedSuggestions": "off"
     },
     "pylint.args": [
-        //"--disable=missing-class-docstring",
-        //"--disable=missing-function-docstring",
-        //"--disable=missing-module-docstring"
+        "--disable=missing-class-docstring",
+        "--disable=missing-function-docstring",
+        "--disable=missing-module-docstring",
+        "--extension-pkg-whitelist=pygame",
+        "--disable-invalid-name"
     ],
     "black-formatter.args": [
         "--line-length=120"
