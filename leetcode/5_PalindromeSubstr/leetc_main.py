@@ -21,6 +21,7 @@ class Solution:
                     return subword
         return ""
 
+
 def main():
     target = Solution()
     result = target.longestPalindrome("a")
