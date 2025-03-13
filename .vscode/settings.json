@@ -2,6 +2,13 @@
     "editor.minimap.scale": 2,
     "editor.minimap.autohide": true,
     "editor.lineNumbers": "relative",
+    "terminal.integrated.defaultProfile.windows":"Git Bash",
+    "terminal.integrated.profiles.windows": {
+        "Git Bash": {
+            "source": "Git Bash",
+            "path": "C:\\Program Files\\Git\\bin\\bash.exe"
+        }
+    },
 
     "python.defaultInterpreterPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
     //"python.analysis.diagnosticMode":"workspace",
