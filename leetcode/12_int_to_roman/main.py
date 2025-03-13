@@ -10,7 +10,7 @@ class Solution:
     def intToRoman(self, num: int) -> str:
         roman_num = ""
         decimal = 0
-        while num > 0:
+        while num > 0 and num < 4000:
             num, remainder = divmod(num, 10)
 
             if remainder:
