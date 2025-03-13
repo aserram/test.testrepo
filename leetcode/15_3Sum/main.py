@@ -10,8 +10,6 @@ class Solution:
             numMap[num] = idx
 
         for target_idx in range(len(nums) - 2):
-            if target_idx > 0 and nums[target_idx] == nums[target_idx - 1]:
-                continue
             for num_idx in range(target_idx + 1, len(nums)):
                 complement = -1 * (nums[target_idx] + nums[num_idx])
                 if complement in numMap and numMap[complement] not in [target_idx, num_idx]:
