@@ -10,16 +10,15 @@ class Solution:
             if target_idx > 0 and nums[target_idx] == nums[target_idx - 1]:
                 continue
             while left < right:
-                sum = nums[right] + nums[left]
-                if nums[target_idx] + sum == 0:
-                    triplet = [nums[target_idx], nums[left], nums[right]]
-                    if triplet not in results:
-                        results.append(triplet)
+                three_sum = nums[target_idx] + nums[right] + nums[left]
+                if three_sum > 0:
                     right -= 1
+                elif three_sum < 0:
                     left += 1
-                elif nums[target_idx] + sum > 0:
-                    right -= 1
                 else:
+                    if [nums[target_idx], nums[right], nums[left]] not in results:
+                        results.append([nums[target_idx], nums[right], nums[left]])
+                    right -= 1
                     left += 1
 
         return results
