@@ -5,21 +5,21 @@ class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         results = []
-        for target_idx in range(len(nums) - 2):
+        for target_idx, target in enumerate(nums):
             left, right = target_idx + 1, len(nums) - 1
-            if target_idx > 0 and nums[target_idx] == nums[target_idx - 1]:
+            if target_idx > 0 and target == nums[target_idx - 1]:
                 continue
             while left < right:
-                three_sum = nums[target_idx] + nums[right] + nums[left]
+                three_sum = target + nums[right] + nums[left]
                 if three_sum > 0:
                     right -= 1
                 elif three_sum < 0:
                     left += 1
                 else:
-                    if [nums[target_idx], nums[right], nums[left]] not in results:
-                        results.append([nums[target_idx], nums[right], nums[left]])
-                    right -= 1
+                    results.append([target, nums[right], nums[left]])
                     left += 1
+                    while nums[left] == nums[left - 1] and left < right:
+                        left += 1
 
         return results
 
