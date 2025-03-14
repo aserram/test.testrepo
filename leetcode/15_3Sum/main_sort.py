@@ -1,4 +1,13 @@
+import json
 from typing import List
+import timeit
+
+
+class jsonReader:
+    def read(self, file: str) -> List[int]:
+        with open(file) as numlist:
+            jsonObject = json.load(numlist)
+        return jsonObject["nums"]
 
 
 class Solution:
@@ -25,10 +34,15 @@ class Solution:
 
 
 def main():
+    reader = jsonReader()
     target = Solution()
-    result = target.threeSum([2, -3, 0, -2, -5, -5, -4, 1, 2, -2, 2, 0, 2, -4, 5, 5, -10])
+
+    nums = reader.read("leetcode\\15_3sum\\nums.txt")
+    result = target.threeSum(nums)
     print(result)
 
 
 if __name__ == "__main__":
-    main()
+    n = 1
+    result = timeit.timeit(stmt="main()", globals=globals(), number=n)
+    print(f"Execution time is {1000*(result/n)}ms")
