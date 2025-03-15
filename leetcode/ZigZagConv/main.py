@@ -5,10 +5,11 @@ class Solution:
         zz_covertion = [""] * numRows
         for char in s:
             zz_covertion[rowidx] += char
-            if main_column:
-                rowidx += 1
-            else:
-                rowidx -= 1
+            if numRows > 1:
+                if main_column:
+                    rowidx += 1
+                else:
+                    rowidx -= 1
 
             if rowidx == numRows - 1:
                 main_column = False
