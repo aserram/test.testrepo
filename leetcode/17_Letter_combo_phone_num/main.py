@@ -4,7 +4,7 @@ from typing import List
 class Solution:
     def __init__(self):
         self.result = []
-        self.digit_table = {
+        self.phone_digits = {
             "2": ["a", "b", "c"],
             "3": ["d", "e", "f"],
             "4": ["g", "h", "i"],
@@ -15,16 +15,24 @@ class Solution:
             "9": ["w", "x", "y", "z"],
         }
 
+    def backtrack(self, digits, idx, comb):
+        if idx == len(digits):
+            self.result.append(comb)
+            return
+
+        for letter in self.phone_digits[digits[idx]]:
+            self.backtrack(digits, idx + 1, comb + letter)
+
     def letterCombinations(self, digits: str) -> List[str]:
         if not len(digits):
             return []
-
-        result = []
+        self.backtrack(digits, 0, "")
+        return self.result
 
 
 def main():
     target = Solution()
-    output = target.letterCombinations("23")
+    output = target.letterCombinations("4652")
     print(output)
 
 
