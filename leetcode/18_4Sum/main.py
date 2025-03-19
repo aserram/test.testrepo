@@ -12,7 +12,7 @@ class Solution:
                 continue
 
             for idx_three, num_three in enumerate(nums[idx_four + 1 : len(nums) - 1], start=idx_four + 1):
-                if idx_three > 0 and nums[idx_three - 1] == num_three:
+                if idx_three > idx_four + 1 and nums[idx_three - 1] == num_three:
                     continue
 
                 left, right = idx_three + 1, len(nums) - 1
@@ -27,11 +27,15 @@ class Solution:
                         left += 1
                     else:
                         right -= 1
+        return results
 
 
 def main():
     target = Solution()
-    output = target.fourSum([1, 0, -1, 0, -2, 2], target=0)
+    # nums = [1, 0, -1, 0, -2, 2]
+    # nums = [2, 2, 2, 2, 2]
+    nums = [-2, -1, -1, 1, 1, 2, 2]
+    output = target.fourSum(nums, target=0)
     print(output)
 
 
