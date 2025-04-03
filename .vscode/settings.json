@@ -1,6 +1,4 @@
 {
-    "editor.minimap.scale": 2,
-    "editor.minimap.autohide": true,
     "editor.lineNumbers": "relative",
     "terminal.integrated.defaultProfile.windows":"Git Bash",
     "terminal.integrated.profiles.windows": {
