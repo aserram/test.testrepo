@@ -13,7 +13,7 @@ class Solution:
                 if not opening_stack or (opening_stack and bracket_mapping[opening_stack.pop()] != char):
                     return False
 
-        return True if not opening_stack else False
+        return not opening_stack
 
 
 def main():
