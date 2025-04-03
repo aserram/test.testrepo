@@ -27,19 +27,18 @@ class LinkedList:
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        res = ListNode(0, head)
-        dummy = res
+        result_ll = ListNode(0, head)
+        leftp = result_ll
+        rightp = head
 
         for _ in range(n):
-            head = head.next
+            rightp = rightp.next
 
-        while head:
-            head = head.next
-            dummy = dummy.next
-
-        dummy.next = dummy.next.next
-
-        return res.next
+        while rightp:
+            leftp = leftp.next
+            rightp = rightp.next
+        leftp.next = leftp.next.next
+        return result_ll.next
 
 
 def main():
@@ -48,6 +47,7 @@ def main():
     node3 = ListNode(3, node4)
     node2 = ListNode(2, node3)
     node1 = ListNode(1, node2)
+    # node1 = ListNode(1, None)
     target = Solution()
     result = LinkedList(target.removeNthFromEnd(node1, 2))
     print(result)
