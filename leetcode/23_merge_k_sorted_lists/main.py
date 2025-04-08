@@ -26,8 +26,37 @@ class LinkedList:
 
 
 class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        pointer = dummy
+        while list1 and list2:
+            if list1.val <= list2.val:
+                dummy.next = list1
+                list1 = list1.next
+            else:
+                dummy.next = list2
+                list2 = list2.next
+
+            dummy = dummy.next
+
+        if list1:
+            dummy.next = list1
+        else:
+            dummy.next = list2
+
+        return pointer.next
+
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        pass
+        if not lists:
+            return None
+
+        while len(lists) > 1:
+            merged = []
+            for idx in range(0, len(lists), 2):
+                list1, list2 = lists[idx], lists[idx + 1] if idx < len(lists) - 1 else None
+                merged.append(self.mergeTwoLists(list1, list2))
+            lists = merged
+        return lists.pop()
 
 
 def main():
