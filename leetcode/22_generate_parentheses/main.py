@@ -22,6 +22,7 @@ class Solution:
 def main():
     target = Solution()
     result = target.generateParenthesis(3)
+    print(result)
 
 
 if __name__ == "__main__":
