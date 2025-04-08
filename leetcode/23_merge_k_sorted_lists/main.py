@@ -53,7 +53,8 @@ class Solution:
         while len(lists) > 1:
             merged = []
             for idx in range(0, len(lists), 2):
-                list1, list2 = lists[idx], lists[idx + 1] if idx < len(lists) - 1 else None
+                list1 = lists[idx]
+                list2 = lists[idx + 1] if idx + 1 < len(lists) else None
                 merged.append(self.mergeTwoLists(list1, list2))
             lists = merged
         return lists.pop()
