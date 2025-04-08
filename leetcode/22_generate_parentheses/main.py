@@ -5,21 +5,23 @@ class Solution:
     def __init__(self):
         self.results = []
 
-    def backtrack(self, n, combination, idx):
-        # placeholder (arguments also)
-        if idx == 2 * n - 1:
+    def backtrack(self, n, combination, open, close):
+        if open == close == n:
             self.results.append(combination)
-        else:
-            pass
+
+        if open < n:
+            self.backtrack(n, combination + "(", open + 1, close)
+        if close < open:
+            self.backtrack(n, combination + ")", open, close + 1)
 
     def generateParenthesis(self, n: int) -> List[str]:
-        self.backtrack(n, "", 0)
+        self.backtrack(n, "", 0, 0)
         return self.results
 
 
 def main():
     target = Solution()
-    result = target.generateParenthesis(2)
+    result = target.generateParenthesis(3)
 
 
 if __name__ == "__main__":
