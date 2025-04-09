@@ -24,23 +24,19 @@ class LinkedList:
 
 class Solution:
     def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(0)
-        result = dummy
+        dummy1 = ListNode(0, head)
+        result = dummy1
+        dummy2 = dummy1.next
 
-        dummy.next = head
-        l1 = head
-        l2 = head.next
-        dummy.next = l2
-        l1.next = l2.next
-        l2.next = l1
+        while dummy2 and dummy2.next:
+            dummy1.next = dummy2.next
+            dummy1 = dummy1.next
+            dummy2.next = dummy1.next
+            dummy1.next = dummy2
 
-        l2 = l1.next
-        l1.next = l2.next
-        l1 = l1.next
-        l2.next = l1.next
-        l1.next = l2
-
-        pass
+            dummy1 = dummy1.next
+            dummy2 = dummy2.next
+        return result.next
 
 
 def main():
