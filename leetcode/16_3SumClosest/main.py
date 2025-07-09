@@ -21,7 +21,7 @@ class Solution:
         for third_idx, third_num in enumerate(nums):
             left, right = third_idx + 1, len(nums) - 1
 
-            if third_num == nums[third_idx - 1]:
+            if third_num == nums[third_idx - 1] and third_idx > 0:
                 continue
 
             while left < right:
