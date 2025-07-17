@@ -32,6 +32,7 @@ class Solution:
                 self.quad.pop()
 
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
         self.kSum(nums, 4, 0, target)
         return self.result
 
