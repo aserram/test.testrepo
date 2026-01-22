@@ -1,16 +1,16 @@
 import dataclasses
-from typing import Optional, TypeVar
+from typing import Optional
 
-# Definition for singly-linked list.
-Node = TypeVar("Node")
 
 @dataclasses.dataclass
 class ListNode:
-    val: str = 0
-    next: Node = None
+    val: int = 0
+    next: Optional["ListNode"] = None
 
+
+# pylint: disable=too-few-public-methods
 class LinkedList:
-    def __init__(self, head: ListNode = None):
+    def __init__(self, head: Optional[ListNode] = None):
         self.head = head
 
     def __str__(self):
@@ -22,28 +22,33 @@ class LinkedList:
         nodes.append("None")
         return " -> ".join(nodes)
 
+
 class Solution:
     def NodeSize(self, head: Optional[ListNode]) -> int:
-        if head != None:
-            counter = 1
-        else:
-            counter = 0
-
-        while head.next != None:
-            counter +=1
+        counter = 0
+        while head is not None:
+            counter += 1
             head = head.next
+
         return counter
 
     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        size = self.NodeSize(head)
+        if head is None:
+            return None
+
+        current: ListNode = head
+        size = self.NodeSize(current)
+
         if size % 2 == 0:
-            middle = int((size/2) + 1)
+            middle = int((size / 2) + 1)
         else:
-            middle = int((size+1)/2)
-        
-        for x in range(middle-1):
-            head = head.next
-        return head 
+            middle = int((size + 1) / 2)
+
+        for _ in range(middle - 1):
+            assert current.next is not None
+            current = current.next
+        return current
+
 
 def main():
     target = Solution()
@@ -53,8 +58,9 @@ def main():
     node2 = ListNode(3)
     node3 = ListNode(4)
     node4 = ListNode(5)
-    #node5 = ListNode(6)
+    # node5 = ListNode(6)
 
+    assert slist.head is not None
     slist.head.next = node1
     node1.next = node2
     node2.next = node3

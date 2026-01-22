@@ -9,11 +9,11 @@ Node = TypeVar("Node")
 @dataclasses.dataclass
 class ListNode:
     val: int = 0
-    next: Node = None
+    next: Optional["ListNode"] = None
 
 
 class LinkedList:
-    def __init__(self, head: ListNode = None):
+    def __init__(self, head: Optional[ListNode] = None):
         self.head = head
 
     def __str__(self):
