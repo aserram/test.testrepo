@@ -1,0 +1,20 @@
+[tool.ruff]
+# 120 line-length preference
+line-length = 120
+# Targest the python version used in the repo
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/W: Style, F: Bugs, I: Imports, N: Naming, B: Bugbear, PL: Pylint
+select = ["E", "W", "F", "I", "N", "B", "PL"]
+
+# Standard ignores to keep the "noise" down
+ignore = [
+    # "D100", "D101", "D102", "D103", # Don't force docstrings everywhere
+    # "PLR0913",                      # Don't complain about "too many arguments"
+    # "E501",                         # Let the formatter handle line length without warnings
+]
+
+[tool.ruff.lint.pylint]
+max-args = 8
+
