@@ -1,0 +1,14 @@
+# 120 line-length preference
+line-length = 120
+# Targest the python version used in the repo
+target-version = "py312"
+
+[lint]
+# E/W: Style, F: Bugs, I: Imports, N: Naming, B: Bugbear, UP: pyupgrade
+select = ["E", "W", "F", "I", "N", "B", "UP"]
+
+# Standard ignores to keep the "noise" down
+ignore = []
+
+[lint.pylint]
+max-args = 8

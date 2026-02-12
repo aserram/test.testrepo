@@ -1,20 +1,13 @@
-[tool.ruff]
-# 120 line-length preference
-line-length = 120
-# Targest the python version used in the repo
-target-version = "py312"
-
-[tool.ruff.lint]
-# E/W: Style, F: Bugs, I: Imports, N: Naming, B: Bugbear, PL: Pylint
-select = ["E", "W", "F", "I", "N", "B", "PL"]
-
-# Standard ignores to keep the "noise" down
-ignore = [
-    # "D100", "D101", "D102", "D103", # Don't force docstrings everywhere
-    # "PLR0913",                      # Don't complain about "too many arguments"
-    # "E501",                         # Let the formatter handle line length without warnings
+[project]
+name = "testrepo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.4"
+dependencies = [
+    "ipykernel>=7.2.0",
+    "matplotlib>=3.10.8",
+    "pandas>=3.0.0",
+    "pyside6>=6.10.2",
+    "requests>=2.32.5",
 ]
-
-[tool.ruff.lint.pylint]
-max-args = 8
-
