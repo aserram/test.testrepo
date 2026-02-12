@@ -23,7 +23,7 @@
     ],
     "notebook.formatOnSave.enabled": true,
     "notebook.codeActionsOnSave": {
-        "source.organizeImports.ruff": "explicit"
+        "notebook.source.organizeImports": "explicit"
     },
     "[python]": {
         "editor.formatOnSave": true,
