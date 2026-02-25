@@ -15,7 +15,7 @@ class Solution:
                 continue
 
             gcd_candidate = min_str[:prefix]
-            if not any(max_str[start : start + prefix] != gcd_candidate for start in range(0, len(max_str), prefix)):
+            if all(gcd_candidate * (len(s) // prefix) == s for s in (min_str, max_str)):
                 return gcd_candidate
         return ""
 
